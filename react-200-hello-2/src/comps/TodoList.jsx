@@ -7,8 +7,8 @@ import TodoItem from "./TodoItem";
 const TodoList = (props) => {
   const { todoList } = props;
   const _tempTodoList = todoList.map((todo) => {
-    const item_td = <TodoItem item={todo} />;
-    return item_td;
+    const todo_td = <TodoItem todo={todo} />;
+    return todo_td;
   });
 
   return (

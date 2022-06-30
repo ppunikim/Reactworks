@@ -11,6 +11,7 @@ const TodoInput = (props) => {
       //insert_todo 호출하며 입력된 todo 전송
       const todo = e.target.value;
       insert_todo(todo);
+      e.target.value = "";
     }
   };
 
