@@ -6,14 +6,22 @@ import TodoItem from "./TodoItem";
 */
 const TodoList = (props) => {
   const { todoList } = props;
-  const _tempTodoList = todoList.map((todo) => {
-    const todo_td = <TodoItem todo={todo} />;
+  const _tempTodoList = todoList.map((todo, index) => {
+    const todo_td = <TodoItem todo={todo} index={index} />;
     return todo_td;
   });
 
   return (
     <table className="w3-table w3-table-all">
-      <thead>{_tempTodoList}</thead>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>시작시간</th>
+          <th>내용</th>
+          <th>끝난시간</th>
+        </tr>
+      </thead>
+      <tbody>{_tempTodoList}</tbody>
     </table>
   );
 };
