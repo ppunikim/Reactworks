@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
+import "./w3css.css";
 import Home from "./comps/Home";
 import About from "./comps/About";
-import TodoMain from "./comps/TodoMain";
-import BucketMain from "./comps/BucketMain";
+import TodoMain from "./comps/todo/TodoMain";
+import BucketMain from "./comps/bucket/BucketMain";
 import Navi from "./comps/Nav";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -16,9 +17,11 @@ function App() {
       {/* react-router-dom 의 영역 */}
       <BrowserRouter>
         <Navi />
-        <Routes path="/" element={<Home />} />
-        <Routes path="/todo" element={<TodoMain />} />
-        <Routes path="/bucket" element={<BucketMain />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/todo" element={<TodoMain />} />
+          <Route path="/bucket" element={<BucketMain />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
