@@ -1,32 +1,18 @@
-# TodoList project
+# React Project Navigation
 
-## Component 구조
+- React Project 에서 메뉴 시스템 구현하기
 
-- TodoMain이 TodoInput과 TodoList를 감싸고 있고
-- TodoInput과 TodoList는 같은 레벨에 있다.
+## Dependency 추가하기
 
-```
-|------------TodoMain--------------|
-|                                  |
-|   |---------TodoInput---------|  |
-|   |---------TodoList----------|  |
-|                                  |
-|----------------------------------|
-```
+- React Nav구현하기 위해 `react-router-dom` 이 필요하다.
+- `yarn add react-router-dom`
 
-## 데이터 흐름 정의
+## React Router 이해하기
 
-- TodoInput에서 데이터를 입력하고 추가하면 TodoList배열에 추가하고
-- TodoList 배열은 TodoList에서 표출한다.
-
-* TodoInput 과 TodoList가 Parent-child관계였다면 TodoInput에서 TodoList State에 값을 추가하면 자연히 TodoList에 변경된 값이 표출될 것이다.
-* 하지만, 2개의 Component가 같은 Level에 있기 때문에 TodoList에서 TodoList State를 정의하면 데이터를 공유하는데 어려움이 있다.
-* 이러한 경우에는 TodoMain에서 todoList State를 선언하고 TodoInput과 TodoList가 공유할 수 있는 방법으로 진행해야 한다.
-
-## TodoList State의 추가(변경)
-
-- `TodoMain에서 todoList State를 선언`하고, `데이터를 입력하는 함수를 선언하여 데이터를 입력하는 함수를 TodoInput에 props로 전달`해 주어야 한다.
-- TodoInput은 input box에 입력된 데이터를 TodoMain으로부터 전달받은 `함수를 통해 TodoMain에 선언된 todoList State에 추가하는 과정이 필요`하다.
--
--
--
+- React 의 화면 구현은 SPA(Single Page Application) 구조이다.
+- 일반적인 화면 구현은 Nav(menu) 구현하는 방법에 따라 다수의 페이지가 필요하고
+- Menu 를 통해 페이지를 전환하는 방식이다.
+- React Nav구조는 전체 모든 페이지가 하나라는 생각을 해야한다.
+- Nav 에서 메뉴를 클릭하면 감춰진 페이지가 앞으로 나타나는 구조로 인식해야 한다.
+- react-router-dom 을 사용하여 구현하는 nav를 `라우터`라고 하고 (경로를 바꿔주는 중간단계)
+- 메뉴를 클릭했을 때 페이지가 나타나도록 하는 것을 `라우팅`이라고 한다. (가는 경로)
