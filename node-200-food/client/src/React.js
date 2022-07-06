@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./React.css";
-
-import FoodInput from "./comps/foodInput";
+import FoodMain from "./comps/FoodMain";
 
 function React() {
   return (
@@ -9,7 +8,7 @@ function React() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <FoodInput />
+      <FoodMain />
     </div>
   );
 }

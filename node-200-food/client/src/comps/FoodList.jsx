@@ -1,10 +1,13 @@
-import FoodItem from "./FoodItem";
-
-const FoodList = (props) => {
-  const { foodList } = props;
-  const _tempFoodList = foodList.map((food, index) => {
-    const food_td = <FoodItem food={food} index={index} />;
-    return food_td;
+const FoodList = ({ foodList }) => {
+  const _tempFoodList = foodList.map((food) => {
+    return (
+      <tr>
+        <th>{food.f_date}</th>
+        <th>{food.f_foodName}</th>
+        <th>{food.f_eatNum}</th>
+        <th>{food.f_kal}</th>
+      </tr>
+    );
   });
 
   return (
@@ -13,7 +16,7 @@ const FoodList = (props) => {
         <tr>
           <th>날짜</th>
           <th>음식명</th>
-          <th>먹은 횟수</th>
+          <th>섭취량</th>
           <th>칼로리</th>
         </tr>
       </thead>

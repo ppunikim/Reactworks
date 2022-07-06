@@ -9,10 +9,11 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-
 import mongoose from "mongoose";
-
+import usersRouter from "./routes/users.js";
+import foodRouter from "./routes/foodAPI.js";
 import { mongoURL } from "./config/mongoConfig.js";
+
 const dbConn = mongoose.connection;
 dbConn.on("connecting", (conn) => {
   console.log("connecting", conn);
@@ -32,11 +33,6 @@ dbConn.on("Error", (err) => {
 
 mongoose.connect(mongoURL);
 
-//import indexRouter from './routes/index.js';
-import usersRouter from "./routes/users.js";
-// 여기있던 코드 위로 올렸다.
-import foodAPI from "./routes/foodAPI.js";
-
 const app = express();
 
 // Disable the fingerprinting of this web technology. 경고
@@ -54,7 +50,7 @@ app.use(express.static(path.join("./client/build")));
 
 //app.use('/', indexRouter);
 app.use("/users", usersRouter);
-app.use("/food", foodAPI);
+app.use("/food", foodRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
