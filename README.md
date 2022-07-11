@@ -17,9 +17,7 @@
 - react-router-dom 을 사용하여 구현하는 nav를 `라우터`라고 하고 (경로를 바꿔주는 중간단계)
 - 메뉴를 클릭했을 때 페이지가 나타나도록 하는 것을 `라우팅`이라고 한다. (가는 경로)
 
-# node-react 연결하기 위한 방법
-
-# BackEnd 만들기 위해 해야 할 일
+# :heart:[node-react 연결(BackEnd 만들기)하기 위한 방법]
 
 ## NodeJS BackEnd Project를 만들기 위해
 
