@@ -49,3 +49,5 @@
 - React.js, React.css, React.test.js, index.js부분 바꾸기.
 - index.js에서는 5, 17번 주석처리 하거나 지우기.
 - 다 됐으면 client창에서 `yarn build`하기.
+
+### 나머지로, DB연동이라던지 새 폴더 만들기라던지 기호사항으로 하기.

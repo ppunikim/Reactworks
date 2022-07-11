@@ -1,70 +1,15 @@
-# Getting Started with Create React App
+# React 에서 외부 파일 연결하는 방법
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 보통 우리는 html에서는 css, js 등을 link href로 연결한다.
+- react의 public 폴더에는 index.html 파일에 css, js등을 기존 방식과 같이 연결할 수 있지만 react에서는 권장하지 않는다.
+- React에서는 특히 css 파일을 src 폴더에 저장하고, index.js 또는 App.js 파일에서 import하여 사용하는 것을 권장한다.
 
-## Available Scripts
+* 그 이유는,
+  `React 프로젝트에서는 yarn build 하면 css, js 파일들을 Transpiling에 저장하는데, 대부분 파일을 압축, 난독화 하여 저장한다. 압축된 css, js파일은 client로 전송될 때 용량이 상대적으로 적어져서 네트워크에 저장된다. public 폴더에 저장되거나 연결된 파일도 압축이 되긴 하지만, css, script등을 외부 연결을 통해 사용하면 압축이 되지 않아 네트워크에 노출되는 현상이 발생한다. 따라서 App.js 혹은 index.js에서 css, js를 적어주는 것이 좋다.`
 
-In the project directory, you can run:
+## React의 parent와 child간 데이터 공유
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- react 변수를 state 변수라고 하는데, state변수는 부모가 만들고, child가 공유하여 사용하는 구조이다.
+- 부모가 생성한 state변수는 child가 변경하거나 할 수 없다.
+- state변수는 어디에 생성 할 것인가는 전체적인 구조를 확정하는, 매~우 중요한 것이다.
+- 일반적으로 state변수는 부모 comp에서 생성하고, 부모 comp에서 변경하는 함수를 만들어서 child에게 전파하는 것이 좋다.

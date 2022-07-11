@@ -35,3 +35,17 @@
 - React.js, React.css, React.test.js, index.js부분 바꾸기.
 - index.js에서는 5, 17번 주석처리 하거나 지우기.
 - 다 됐으면 client창에서 `yarn build`하기.
+
+## MongoDB연동을 위해 할 일
+
+- node-210-food 터미널창에서 `ctrl + c` 눌러서 `npm install -g nodemon` 하기.(업뎃)
+- mongoose dependency 설치하기 : `npm install mongoose`
+- 이제는 client 터미널 창으로 가서,
+- 날짜 시간 도구 설치 : `yarn add moment`
+- UUID key 생성도구 설치 : `yarn add react-uuid`
+- 다 끝났으면 client 터미널에서 `yarn build` 하기 => 그러면 package.json에서 설치된 것을 볼 수 있다.
+
+## 이제 client 폴더 밑에 새 폴더 만들기
+
+- 새 폴더와 파일 이름은 `comps/DietMain.jsx`, `DiatInput.jsx`, `DietList.jsx`
+- 폴더 내용에 기초 내용으로는 `const 폴더명 = () => {}` 와 `export default 폴더명` 이렇게 두 가지는 있어야 한다.
