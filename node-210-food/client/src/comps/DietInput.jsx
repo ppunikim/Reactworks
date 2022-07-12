@@ -2,7 +2,9 @@ import { useState } from "react";
 import uuid from "react-uuid";
 import moment from "moment";
 
-const DietInput = () => {
+const DietInput = ({ params }) => {
+  // params로 전달받은 데이터와 함수중, 필요한 부분만 분해해 변수로 받기
+  const { fetchFood, setFoods } = params;
   const [food, setFood] = useState({
     d_id: uuid(),
     d_date: moment().format("YYYY[-]MM[-]DD"),
@@ -41,11 +43,37 @@ const DietInput = () => {
       },
       body: JSON.stringify(food),
     };
-    const res = await fetch("http://localhost:3000/food/insert", postOption);
+    /**
+     * react 와 node사이에 데이터를 주고받는데
+     * 서로 다른 PORT 통해서 데이터를 주고받게 돼
+     * CORS(Cross Origin Resouce Share, 교차 사이트 스트립트 오류)가 발생.
+     * 서버와 서버간 통신(데이터 교환)이 이루어질 때
+     * 보안, 해킹방지 등이 점점 많은 곳에서 스크립트 교환이
+     *  이루어지지 않도록 하고 있다.
+     * React와 NodeJS가 다른 서버에서 작동될 때는 Package.json에 proxy 설정을 통해
+     *  CORS문제를 일부 해결할 수 있다.
+     *
+     *
+     * proxy 설정을 했을 경우 fetch URL부분에 http://localhost:3000 부분을
+     * 없에고 작성해도 된다.
+     * 그 이유는 이미 package.json에서 작성해줬기 때문이다.
+     */
+    const res = await fetch("/food/insert", postOption);
     if (res.ok) {
       const json = await res.json();
       console.log(json);
+      await fetchFood().then((result) => {
+        setFoods(result);
+      });
     }
+
+    setFood({
+      d_id: uuid(),
+      d_date: moment().format("YYYY[-]MM[-]DD"),
+      d_food: "",
+      d_qty: "",
+      d_cal: "",
+    });
   };
 
   return (
@@ -55,7 +83,7 @@ const DietInput = () => {
           type="date"
           name="d_date"
           className="w3-input"
-          defaultValue={food.d_date}
+          value={food.d_date}
           onChange={onChange}
         />
       </div>
@@ -65,6 +93,7 @@ const DietInput = () => {
           name="d_food"
           placeholder="음식 메뉴를 입력하세요."
           className="w3-input "
+          value={food.d_food}
           onChange={onChange}
         />
       </div>
@@ -74,6 +103,7 @@ const DietInput = () => {
           name="d_qty"
           placeholder="섭취 수량을 입력하세요."
           className="w3-input "
+          value={food.d_qty}
           onChange={onChange}
         />
       </div>
@@ -83,6 +113,7 @@ const DietInput = () => {
           name="d_cal"
           placeholder="단위 칼로리를 입력하세요."
           className="w3-input "
+          value={food.d_cal}
           onChange={onChange}
         />
       </div>
