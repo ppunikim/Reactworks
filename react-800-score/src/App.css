@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  width: 80%;
+  margin: 10px auto;
+}
+table tr {
+  cursor: pointer;
+}
+table tr td:last-of-type {
+  color: red;
+  font-weight: 500;
+}
