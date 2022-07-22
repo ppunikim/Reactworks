@@ -1,19 +1,26 @@
-# React Props Drilling
+## hook함수
 
-- React Compontent가 여러 겹으로 감싸고 있을 때, 상위 Component state를 생성하고, 그 state를 사용하여 하위(child) Compontent들이 rendering을 하거나 state를 변경해야 하는 경우가 아주 많다.
-- 상위 Comp에서 여러 겹의 하위 Comp로 state를 전달할 때 중간에 위치한 Comp들은 실제로 필요하지 않지만, 부모 Comp로부터 Props로 받아서 자식 Comp에게 계속해서 props로 Toss해야하는 경우가 발생한다.
-- 이러한 drilling 현상을 방지하기 위해 Store라는 개념이 생겨났다.
-- Drilling현상을 방지하기 위해 기본 react 기능 중 `Redux`, `Mobox`,`recoil` 등의 3rd part LIB를 사용한다.
-- 3rd part LIB 들이 오히려 React를 학습하는 것 보다 많은 어려운 경우가 많다. 그래서 React에서는 Context.Provider라는 도구를 제공해 단지 Store기능만 수행하도록 마련해놨다.
+- react 가 처음 탄생할땐 class를 사용하여 컴포넌트를 만들었다.
+- JS Class 를 사용하면 기존의 JS코드의 장점을 많이 활용하기가 다소 어렵다.
+- React 에서는 Class로 컴포넌트를 제작하는 대신 함수를 사용해 컴포넌트를 제작하는 문법을 도입한다.
+- `useState()` : state 변수를 생성하는 함수
+- `useEffect()` : state 변수가 변동될 때 ,
+  React 사용자가 어떤 코드를 실행하고자 할 때,
+  화면이 rendering될 대 fetch 데이터를 가져오거나 할 떄 1. 화면이 최초 rendering될 때 자동으로 호출되는 함수 2. state변수를 지정하여 state변수가 변화할 때
+- hook함수는 모두 use접두사로 시작
+- `useContext()` : 이 함수는 어떤 Provider Store에 저장된 데이터인지를 항상 명시해줘야 한다.
+  함수를 사용할 때 무엇인가 명시해주는 것은 코딩을 하는 입장에서 다소 불편할 수 있다.
+- 그래서 원래 있던 useContext를 useAppContext로 재 정의하고 사용자는 이제 어떤 Provider를 사용해야 하는지 걱정하지 않아도 될 수 있도록 만든 것이다.
 
-# React Content.Provider를 사용해 Drilling 문제 해결
+### 사용자 정의 Hook만드는 규칙
 
-- 3rd part LIB 를 사용해 Drilling 문제를 해결할 수 있지만, 학습 곡선이 매우 커 큰 프로젝트가 아니면 오히려 불편할 수 있다.
-
-# Context.Provider 향상된 사용
-
-- context-v2 에서는 Context.Provider 의 간단한 사용법을 확인했다.
-- 실제 사용해야 할 state 변수와 여러가지 함수들을 만드는 곳과 보관하는 곳의 별도의 장소가 돼 프로젝트가 커지면 관리가 불편해질 수 있다.
-- 관리할 요소들(state, 여러가지 함수)과 store를 한곳에서 관리하는 코드 작성
+- 접두사는 반드시 use로 시작, 접미사는 만들고자 하는 원래 Hook이름
+  useContext => useMyContext
+  useState => useMyState
+  useEffect => useMyEffect
+  을 이런식으로 바꿔준다.
 
 # 합성 - Composition
+
+- 일반적인 상속과 조금의 차이를 두는 개념이다.
+- 상속 : is-a , 합성 : has-a

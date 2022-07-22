@@ -1,8 +1,7 @@
-import AppContext from "../context/Context";
-import { useContext } from "react";
+import { useAppContext } from "../context/ContextProvider";
 
 const Input = () => {
-  const { address, setAddress, addrList, setAddrList } = useContext(AppContext);
+  const { address, setAddress, addrList, setAddrList } = useAppContext();
   const { ad_name, ad_tel, ad_addr } = address;
 
   const onChangeEvent = (e) => {
